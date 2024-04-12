@@ -18,6 +18,7 @@ class Teste_Produtos():
 
     def test_selecionar_produtos(self):
             self.driver.get(self.url)
+            self.driver.set_window_size(1920, 1080)
             self.driver.find_element(By.ID, "user-name").send_keys("standard_user")
             self.driver.find_element(By.ID, "password").send_keys("secret_sauce")
             self.driver.find_element(By.CSS_SELECTOR, "input.submit-button.btn_action").click()
@@ -25,3 +26,14 @@ class Teste_Produtos():
             assert self.driver.find_element(By.CSS_SELECTOR, ".title").text == "Products"
             assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"
             assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99"
+
+            self.driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+            self.driver.find_element(By.ID, "shopping_cart_container").click()
+            
+            assert self.driver.find_element(By.CSS_SELECTOR, ".title").text == "Your Cart"
+            assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item_name").text == "Sauce Labs Backpack"
+            assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item_price").text == "$29.99"
+
+            self.driver.find_element(By.ID, "remove-sauce-labs-backpack").click()
+            self.driver.find_element(By.CSS_SELECTOR, ".bm-burger-button").click()
+            self.driver.find_element(By.ID, "logout_sidebar_link").click()
