@@ -52,3 +52,13 @@ def step_impl(context, mensagem):
     assert context.driver.find_element(By.CSS_SELECTOR, "h3").text == mensagem
 
     context.driver.quit()
+
+#Preencher com usuário e senha através da decisão (IF)
+@when(u'digito os campos de login com usuario {usuario} e senha {senha} com IF')
+def step_impl(context, usuario, senha):
+    if usuario != '<branco>':
+        context.driver.find_element(By.ID, "user-name").send_keys(usuario)
+    if senha != '<branco>':
+        context.driver.find_element(By.ID, "password").send_keys(senha)
+        
+    context.driver.find_element(By.CSS_SELECTOR, "input.submit-button.btn_action").click()
