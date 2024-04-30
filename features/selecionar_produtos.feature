@@ -4,7 +4,10 @@ Feature: Selecionar Produto
         Given que acesso o site Sauce Demo
         When preencho os campos de login com usuario standard_user e senha secret_sauce
         Then sou direcionado para página home
-        
+        When adiciono o produto Sauce Labs Backpack ao carrinho
+        Then o produto deverá aparecer no carrinho de compras
+        And faço o logout 
+
     Scenario: Login com a senha invalida
         Given que acesso o site Sauce Demo
         When preencho os campos de login com usuario standard_user e senha senha_invalida
